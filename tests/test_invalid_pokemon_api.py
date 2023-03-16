@@ -1,12 +1,13 @@
 import pytest
 import requests
 
+
 # ------------------------------------------
 # Failing tests
 # ------------------------------------------
 
 
-@pytest.mark.invalid
+@pytest.mark.invalid_test
 @pytest.mark.pikachard
 def test_pikachard():
     # ARRANGE
@@ -20,8 +21,7 @@ def test_pikachard():
     assert response.status_code == 200
 
 
-
-@pytest.mark.invalid
+@pytest.mark.invalid_test
 @pytest.mark.raimundo
 def test_raimundo():
     # ARRANGE
@@ -33,4 +33,3 @@ def test_raimundo():
 
     # ASSERT
     assert response.status_code == 200
-

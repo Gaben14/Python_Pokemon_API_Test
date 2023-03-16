@@ -5,7 +5,11 @@ import requests
 # API key function - To keep the DRY principle
 # ------------------------------------------
 
+pokemons = [("squirtle", "water"), ("bulbasaur", "grass"), ("charmander", "fire"), ("pikachu", "electric")]
 
+
+@pytest.mark.valid_test
+@pytest.mark.parametrize('pokemon_name, pokemon_type', pokemons)
 def test_pokemon(pokemon_name, pokemon_type):
     """In this function we want to compare the value (name) of the PokeApi
     with the given Pokemon name and also to test the API connection
@@ -22,25 +26,3 @@ def test_pokemon(pokemon_name, pokemon_type):
     assert response.status_code == 200
     assert body["name"] == pokemon_name
     assert body["types"][0]["type"]["name"] == pokemon_type
-
-
-# ------------------------------------------
-# Testing different Pokemon API calls
-# ------------------------------------------
-@pytest.mark.squirtle
-def test_squirtle():
-    test_pokemon("squirtle", "water")
-
-@pytest.mark.bulbasaur
-def test_bulbasaur():
-    test_pokemon("bulbasaur", "grass")
-
-
-@pytest.mark.charmander
-def test_charmander():
-    test_pokemon("charmander", "fire")
-
-
-@pytest.mark.pikachu
-def test_pikachu():
-    test_pokemon("pikachu", "electric")
