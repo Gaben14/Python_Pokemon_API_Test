@@ -1,5 +1,4 @@
 import pytest
-import requests
 from pokemon import Pokemon
 from pokemon_api_call import api_call
 
@@ -20,6 +19,5 @@ def test_pokemon(pokemon_name, pokemon_type):
     pokemon_api_call = api_call(pokemon.get_pokemon_name)
 
     # ASSERT
-    # update
     assert pokemon_api_call["name"] == pokemon.get_pokemon_name
     assert pokemon_api_call["types"][0]["type"]["name"] == pokemon.get_pokemon_type
