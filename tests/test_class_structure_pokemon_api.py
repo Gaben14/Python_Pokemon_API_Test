@@ -8,22 +8,40 @@ import requests
 
 class Pokemon:
     def __init__(self, pokemon_name, pokemon_type):
-        self.pokemon_name = pokemon_name
-        self.pokemon_type = pokemon_type
+        self.__pokemon_name = pokemon_name
+        self.__pokemon_type = pokemon_type
 
-@pytest.mark.squirtle
-def test_squirtle():
+    @property
+    def get_pokemon_name(self):
+        return self.__pokemon_name
+
+    @property
+    def get_pokemon_type(self):
+        return self.__pokemon_type
+
+
+def api_call(pokemon_name):
     # ARRANGE
-    pokemon_name = "squirtle"
-    pokemon_type = "water"
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
+    ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/'
+    url = f'{ENDPOINT}{pokemon_name}'
 
     # ACT
     response = requests.get(url)
     body = response.json()
 
-    # ASSERT
     assert response.status_code == 200
-    assert body["name"] == pokemon_name
-    assert body["types"][0]["type"]["name"] == pokemon_type
+    return body
 
+
+def test_pokemon():
+    # ARRANGE
+    # Use Parametrize to create multiple instances of the Pokemon class?
+    pokemon = Pokemon("squirtle", "water")
+
+    # ACT
+    pokemon_api_call = api_call(pokemon.get_pokemon_name)
+
+    # ASSERT
+
+    assert pokemon_api_call["name"] == pokemon.get_pokemon_name
+    assert pokemon_api_call["types"][0]["type"]["name"] == pokemon.get_pokemon_type
