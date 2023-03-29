@@ -42,6 +42,6 @@ def test_pokemon():
     pokemon_api_call = api_call(pokemon.get_pokemon_name)
 
     # ASSERT
-
+    #update
     assert pokemon_api_call["name"] == pokemon.get_pokemon_name
     assert pokemon_api_call["types"][0]["type"]["name"] == pokemon.get_pokemon_type
