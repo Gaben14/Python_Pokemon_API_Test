@@ -5,7 +5,7 @@ import requests
 # ------------------------------------------
 # Passing tests
 # ------------------------------------------
-
+ENDPOINT = "https://pokeapi.co/api/v2/pokemon/"
 
 @pytest.mark.valid_test
 @pytest.mark.pikachu
@@ -13,7 +13,7 @@ def test_pikachu():
     # ARRANGE
     pokemon_name = "pikachu"
     pokemon_type = "electric"
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
+    url = f'{ENDPOINT}{pokemon_name}'
 
     # ACT
     response = requests.get(url)
@@ -31,7 +31,7 @@ def test_bulbasaur():
     # ARRANGE
     pokemon_name = "bulbasaur"
     pokemon_type = "grass"
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
+    url = f'{ENDPOINT}{pokemon_name}'
 
     # ACT
     response = requests.get(url)
@@ -49,7 +49,7 @@ def test_squirtle():
     # ARRANGE
     pokemon_name = "squirtle"
     pokemon_type = "water"
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
+    url = f'{ENDPOINT}{pokemon_name}'
 
     # ACT
     response = requests.get(url)
@@ -66,7 +66,7 @@ def test_charmander():
     # ARRANGE
     pokemon_name = "charmander"
     pokemon_type = "fire"
-    url = f'https://pokeapi.co/api/v2/pokemon/{pokemon_name}'
+    url = f'{ENDPOINT}{pokemon_name}'
 
     # ACT
     response = requests.get(url)

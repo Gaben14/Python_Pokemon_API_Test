@@ -3,7 +3,7 @@ import requests
 
 
 # ------------------------------------------
-# Failing tests
+# Failing tests - 2023.03.20 - Rewrite this file with the pytest.raises solution?
 # ------------------------------------------
 
 
