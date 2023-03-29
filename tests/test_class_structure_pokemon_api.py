@@ -1,47 +1,25 @@
 import pytest
 import requests
-
+from pokemon import Pokemon
+from pokemon_api_call import api_call
 
 # ------------------------------------------
-# This API file is about having passing test using basic OOP structure
+# This API test file is about having passing test using basic OOP structure
 # ------------------------------------------
-
-class Pokemon:
-    def __init__(self, pokemon_name, pokemon_type):
-        self.__pokemon_name = pokemon_name
-        self.__pokemon_type = pokemon_type
-
-    @property
-    def get_pokemon_name(self):
-        return self.__pokemon_name
-
-    @property
-    def get_pokemon_type(self):
-        return self.__pokemon_type
+pokemons = [("squirtle", "water"), ("bulbasaur", "grass"), ("charmander", "fire"), ("pikachu", "electric")]
 
 
-def api_call(pokemon_name):
-    # ARRANGE
-    ENDPOINT = 'https://pokeapi.co/api/v2/pokemon/'
-    url = f'{ENDPOINT}{pokemon_name}'
-
-    # ACT
-    response = requests.get(url)
-    body = response.json()
-
-    assert response.status_code == 200
-    return body
-
-
-def test_pokemon():
+@pytest.mark.pokemon_structure_test
+@pytest.mark.parametrize('pokemon_name, pokemon_type', pokemons)
+def test_pokemon(pokemon_name, pokemon_type):
     # ARRANGE
     # Use Parametrize to create multiple instances of the Pokemon class?
-    pokemon = Pokemon("squirtle", "water")
+    pokemon = Pokemon(pokemon_name, pokemon_type)
 
     # ACT
     pokemon_api_call = api_call(pokemon.get_pokemon_name)
 
     # ASSERT
-    #update
+    # update
     assert pokemon_api_call["name"] == pokemon.get_pokemon_name
     assert pokemon_api_call["types"][0]["type"]["name"] == pokemon.get_pokemon_type
